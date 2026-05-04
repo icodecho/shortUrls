@@ -2,7 +2,7 @@ name = "short-urls"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
 
-[[kv_namespaces]]
+# [[kv_namespaces]]
 # binding = "SHORT_URLS"
 # id = "short-urls-namespace"
 # preview_id = "short-urls-namespace-preview"
