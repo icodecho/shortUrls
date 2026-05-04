@@ -14,9 +14,8 @@ export default {
     const config = await env.SHORT_URLS.get(path)
 
     if (!config) {
-      // If short URL not found, redirect to fallback URL
-      const fallbackUrl = env.FALLBACK_URL || '/'
-      return Response.redirect(fallbackUrl, 302)
+      // redirect to the fallback URL if short URL not found
+      return Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
     }
 
     // Parse the configuration
