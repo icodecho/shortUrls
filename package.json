@@ -1,0 +1,13 @@
+{
+  "name": "short-urls",
+  "version": "1.0.0",
+  "description": "Short URL service deployed on Cloudflare Workers",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
