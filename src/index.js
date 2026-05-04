@@ -38,7 +38,8 @@ export default {
     const redirectType = redirectConfig.type || env.DEFAULT_REDIRECT_TYPE || '302'
 
     if (!targetUrl) {
-      return new Response('Invalid redirect configuration', { status: 500 })
+      // redirect to the fallback URL if target URL is empty
+      return Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
     }
 
     // Perform the redirect with the specified status code
