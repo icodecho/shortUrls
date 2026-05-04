@@ -11,7 +11,7 @@ export default {
     }
 
     // Retrieve the redirect configuration from KV
-    const config = '{}'
+    let config
     try {
       config = await env.SHORT_URLS.get(path)
     } catch (e) {
