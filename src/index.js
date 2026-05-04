@@ -16,12 +16,12 @@ export default {
       config = await env.SHORT_URLS.get(path)
     } catch (e) {
       // redirect to the fallback URL if short URL not found
-      return Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
+      return new Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
     }
 
     if (!config) {
       // redirect to the fallback URL if short URL not found
-      return Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
+      return new Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
     }
 
     // Parse the configuration
@@ -30,7 +30,7 @@ export default {
       redirectConfig = JSON.parse(config)
     } catch (e) {
       // If config is not valid JSON, treat it as the URL directly
-      return Response.redirect(config, env.DEFAULT_REDIRECT_TYPE)
+      return new Response.redirect(config, env.DEFAULT_REDIRECT_TYPE)
     }
 
     // Extract redirect URL and type
@@ -39,10 +39,10 @@ export default {
 
     if (!targetUrl) {
       // redirect to the fallback URL if target URL is empty
-      return Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
+      return new Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
     }
 
     // Perform the redirect with the specified status code
-    return Response.redirect(targetUrl, parseInt(redirectType))
+    return new Response.redirect(targetUrl, parseInt(redirectType))
   }
 }
