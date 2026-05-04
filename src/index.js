@@ -11,13 +11,12 @@ export default {
     }
 
     // Retrieve the redirect configuration from KV
-    let config = null
-    if (env.SHORT_URLS) {
-      try {
-        config = await env.SHORT_URLS.get(path)
-      } catch (e) {
-        config = null
-      }
+    const config = '{}'
+    try {
+      config = await env.SHORT_URLS.get(path)
+    } catch (e) {
+      // redirect to the fallback URL if short URL not found
+      return Response.redirect(env.FALLBACK_URL, env.DEFAULT_REDIRECT_TYPE)
     }
 
     if (!config) {
@@ -31,7 +30,7 @@ export default {
       redirectConfig = JSON.parse(config)
     } catch (e) {
       // If config is not valid JSON, treat it as the URL directly
-      return Response.redirect(config, 302)
+      return Response.redirect(config, env.DEFAULT_REDIRECT_TYPE)
     }
 
     // Extract redirect URL and type
