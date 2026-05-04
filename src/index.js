@@ -11,7 +11,14 @@ export default {
     }
 
     // Retrieve the redirect configuration from KV
-    const config = await env.SHORT_URLS.get(path)
+    let config = null
+    if (env.SHORT_URLS) {
+      try {
+        config = await env.SHORT_URLS.get(path)
+      } catch (e) {
+        config = null
+      }
+    }
 
     if (!config) {
       // redirect to the fallback URL if short URL not found
